@@ -15,4 +15,4 @@ def index():
 def post_item():
     title = request.form["title"]
     add_item(title)
-    return redirect("http://127.0.0.1:5000",302)
+    return redirect("/", 302)
