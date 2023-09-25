@@ -3,24 +3,39 @@
 
 {% block content %}
   <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
+    <h1 class="display-4">Trello Cards</h1>
+    <p class="lead">Cards from Trello workspace</p>
   </div>
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Items</h2>
+      <h2>ToDo Items</h2>
+      
       <ul class="list-group mb-4">
-        {% for item in items %}
-          <li>{{item.id}} - {{item.status}} - {{item.title}}</li>
+        {% for todo_card in todo_cards %} 
+          <form action={{ url_for( 'complete_item', id=todo_card.id)}} method="post">
+          <li><button>Complete</button> {{todo_card.name}} - {{todo_card.shortUrl}}</li>
+          </form>
+        {% endfor %}
+      </ul>
+      <h2>Doing Items</h2>
+      
+      <ul class="list-group mb-4">
+        {% for doing_card in doing_cards %}
+        <form action={{ url_for( 'complete_item', id=doing_card.id)}} method="post">
+          <li><input type="submit" name="Complete" value="Complete"> {{doing_card.name}} - {{doing_card.shortUrl}} </li>
+        </form>
+        {% endfor %}
+      </ul>
+    
+      <h2>Done Items</h2>
+      <ul class="list-group mb-4">
+        {% for done_card in done_cards %}
+        <form action={{ url_for( 'reopen_item', id=done_card.id)}} method="post">
+          <li><input type="submit" name="Reopen" value="Reopen"> {{done_card.name}} - {{done_card.shortUrl}} </li>
+        </form>
         {% endfor %}
       </ul>
     </div>
   </div>
-
-  <form action="/add"  method="post">
-   <label for="Title">Task Title:</label><br>
-<input type="text" id="title" name="title" required><br>
-    <input type="submit" value="Add Task">
-  </form>
 {% endblock %}
