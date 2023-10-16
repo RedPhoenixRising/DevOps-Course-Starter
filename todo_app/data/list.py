@@ -11,7 +11,7 @@ class List:
 
     def init_cards(self, json_input):
         for card in json_input:
-            new_card = Card(card, self)
+            new_card = Card.from_json_input(card, self.name, self.id)
             self.cards.append(new_card)
 
     def get_cards(self):

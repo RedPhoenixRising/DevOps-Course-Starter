@@ -31,9 +31,20 @@ class TrelloHelper:
 
     def set_list_ids(self):
         if self.card_lists:
-            self.todo_list_id = self.card_lists[self._LIST_TO_DO].id
-            self.doing_list_id = self.card_lists[self._LIST_DOING].id
-            self.done_list_id = self.card_lists[self._LIST_DONE].id
+            if self._LIST_TO_DO in self.card_lists:
+                self.todo_list_id = self.card_lists[self._LIST_TO_DO].id
+            else:
+                self.todo_list_id = "TO_DO_LIST_ID"
+
+            if self._LIST_DOING in self.card_lists:
+                self.doing_list_id = self.card_lists[self._LIST_DOING].id
+            else:
+                self.doing_list_id = "DOING_LIST_ID"
+
+            if self._LIST_DONE in self.card_lists:
+                self.done_list_id = self.card_lists[self._LIST_DONE].id
+            else:
+                self.done_list_id = "DONE_LIST_ID"
         
     def refresh_lists(self):
         
@@ -71,7 +82,8 @@ class TrelloHelper:
         self.move_card_to_list(id, self.todo_list_id)
 
     def get_cards(self, list_name):
-        return self.card_lists[list_name].get_cards()
+        if list_name in self.card_lists:
+            return self.card_lists[list_name].get_cards()
 
     def get_card_by_id(self, id):
         for key in self.card_lists:
