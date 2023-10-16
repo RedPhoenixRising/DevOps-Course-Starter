@@ -12,7 +12,7 @@
       <h2>ToDo Items</h2>
       
       <ul class="list-group mb-4">
-        {% for todo_card in todo_cards %} 
+        {% for todo_card in view_model.to_do_items %} 
           <form action={{ url_for( 'complete_item', id=todo_card.id)}} method="post">
           <li><button>Complete</button> {{todo_card.name}} - {{todo_card.shortUrl}}</li>
           </form>
@@ -21,7 +21,7 @@
       <h2>Doing Items</h2>
       
       <ul class="list-group mb-4">
-        {% for doing_card in doing_cards %}
+        {% for doing_card in view_model.doing_items %}
         <form action={{ url_for( 'complete_item', id=doing_card.id)}} method="post">
           <li><input type="submit" name="Complete" value="Complete"> {{doing_card.name}} - {{doing_card.shortUrl}} </li>
         </form>
@@ -30,7 +30,7 @@
     
       <h2>Done Items</h2>
       <ul class="list-group mb-4">
-        {% for done_card in done_cards %}
+        {% for done_card in view_model.done_items %}
         <form action={{ url_for( 'reopen_item', id=done_card.id)}} method="post">
           <li><input type="submit" name="Reopen" value="Reopen"> {{done_card.name}} - {{done_card.shortUrl}} </li>
         </form>
