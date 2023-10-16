@@ -74,3 +74,35 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+
+## Running the Tests
+
+Tests are located inside the tests folder underneath the todo_app folder. 
+
+Currently the following unit tests are configured:-
+
+test_view_model.py
+
+
+The tests that are configured are as follows:-
+
+test_view_model_to_do_property
+test_view_model_doing_property
+test_view_model_done_property
+
+
+From the comnmand line - type pytest to run all the tests. This will run from any folder
+
+To run an individual test within the suite, this depends upon which folder you call the tests from
+
+From tests folder - pytest test_view_model.py::test_view_model_doing_property
+
+From todo_app folder - pytest tests/test_view_model.py::test_view_model_doing_property
+
+From root folder - pytest todo_app/tests/test_view_model.py::test_view_model_doing_property
+
+
+
+
+
